@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { fadeInUpVariants, containerVariants, buttonVariants } from "../utils/animations";
 
 export default function ApplyAdmission() {
   const navigate = useNavigate();
@@ -65,87 +67,118 @@ export default function ApplyAdmission() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-12 px-6 md:px-16">
-      <div className="text-center max-w-3xl mx-auto mb-14">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
+    <motion.div 
+      className="bg-gray-50 min-h-screen py-12 px-6 md:px-16"
+      variants={fadeInUpVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div 
+        className="text-center max-w-3xl mx-auto mb-14"
+        variants={fadeInUpVariants}
+      >
+        <motion.h1 className="text-4xl md:text-5xl font-extrabold mb-4" variants={fadeInUpVariants}>
           Apply for Admission
-        </h1>
-        <p className="text-gray-600 text-lg">
+        </motion.h1>
+        <motion.p className="text-gray-600 text-lg" variants={fadeInUpVariants}>
           Fill this form to apply for SSC, Polytechnic, or Government Exams coaching.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
-      <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl p-8">
+      <motion.div 
+        className="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl p-8"
+        variants={fadeInUpVariants}
+      >
         {message && (
-          <div className="bg-green-50 text-green-700 border border-green-200 p-4 rounded-xl mb-6">
+          <motion.div 
+            className="bg-green-50 text-green-700 border border-green-200 p-4 rounded-xl mb-6"
+            variants={fadeInUpVariants}
+          >
             {message}
-          </div>
+          </motion.div>
         )}
 
         {error && (
-          <div className="bg-red-50 text-red-700 border border-red-200 p-4 rounded-xl mb-6">
+          <motion.div 
+            className="bg-red-50 text-red-700 border border-red-200 p-4 rounded-xl mb-6"
+            variants={fadeInUpVariants}
+          >
             {error}
-          </div>
+          </motion.div>
         )}
 
-        <form onSubmit={handleSubmit} className="grid gap-6">
-          <input
+        <motion.form 
+          onSubmit={handleSubmit} 
+          className="grid gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.input
             type="text"
             placeholder="Student Full Name"
             className="border border-gray-300 rounded-lg p-3"
             value={formData.studentName}
             onChange={(e) => handleInputChange("studentName", e.target.value)}
             required
+            variants={fadeInUpVariants}
           />
 
-          <input
+          <motion.input
             type="text"
             placeholder="Father / Guardian Name"
             className="border border-gray-300 rounded-lg p-3"
             value={formData.guardianName}
             onChange={(e) => handleInputChange("guardianName", e.target.value)}
             required
+            variants={fadeInUpVariants}
           />
 
-          <input
+          <motion.input
             type="tel"
             placeholder="Mobile Number"
             className="border border-gray-300 rounded-lg p-3"
             value={formData.phone}
             onChange={(e) => handleInputChange("phone", e.target.value)}
             required
+            variants={fadeInUpVariants}
           />
 
-          <select
+          <motion.select
             className="border border-gray-300 rounded-lg p-3"
             value={formData.course}
             onChange={(e) => handleInputChange("course", e.target.value)}
             required
+            variants={fadeInUpVariants}
           >
             <option value="">-- Select Course --</option>
             <option value="SSC (Secondary School Certificate)">SSC (Secondary School Certificate)</option>
             <option value="Polytechnic Entrance Exams">Polytechnic Entrance Exams</option>
             <option value="Government Exams Preparation">Government Exams Preparation</option>
-          </select>
+          </motion.select>
 
-          <textarea
+          <motion.textarea
             rows={4}
             placeholder="Address"
             className="border border-gray-300 rounded-lg p-3"
             value={formData.address}
             onChange={(e) => handleInputChange("address", e.target.value)}
             required
-          ></textarea>
+            variants={fadeInUpVariants}
+          ></motion.textarea>
 
-          <button
+          <motion.button
             type="submit"
             className="bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400"
             disabled={loading}
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
           >
             {loading ? "Submitting..." : "Submit Application"}
-          </button>
-        </form>
-      </div>
-    </div>
+          </motion.button>
+        </motion.form>
+      </motion.div>
+    </motion.div>
   );
 }

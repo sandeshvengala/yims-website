@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { fadeInUpVariants, containerVariants, buttonVariants } from "../utils/animations";
 
 type Role = "admin" | "staff" | "student";
 
@@ -68,15 +70,28 @@ export default function Login() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto space-y-10">
-        <header className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-semibold text-gray-900">Login</h1>
-            <p className="text-sm text-gray-500">
+    <motion.main 
+      className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+      variants={fadeInUpVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div 
+        className="max-w-5xl mx-auto space-y-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.header 
+          className="flex items-center justify-between"
+          variants={fadeInUpVariants}
+        >
+          <motion.div variants={fadeInUpVariants}>
+            <motion.h1 className="text-2xl font-semibold text-gray-900">Login</motion.h1>
+            <motion.p className="text-sm text-gray-500">
               Sign in with your assigned ID and password.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           <Link
             to="/"
@@ -84,12 +99,20 @@ export default function Login() {
           >
             Home
           </Link>
-        </header>
+        </motion.header>
 
-        <section className="bg-white rounded-2xl shadow p-6 md:p-8 space-y-6">
-          <div className="flex flex-wrap gap-3">
+        <motion.section 
+          className="bg-white rounded-2xl shadow p-6 md:p-8 space-y-6"
+          variants={fadeInUpVariants}
+        >
+          <motion.div 
+            className="flex flex-wrap gap-3"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
             {(["admin", "staff", "student"] as Role[]).map((value) => (
-              <button
+              <motion.button
                 key={value}
                 type="button"
                 onClick={() => setRole(value)}
@@ -98,20 +121,32 @@ export default function Login() {
                     ? "bg-blue-600 text-white border-blue-600"
                     : "border-gray-300 text-gray-600 hover:bg-gray-50"
                 }`}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
               >
                 {roleLabels[value]} Login
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
 
           {error && (
-            <div className="bg-red-50 text-red-700 border border-red-200 p-3 rounded-xl">
+            <motion.div 
+              className="bg-red-50 text-red-700 border border-red-200 p-3 rounded-xl"
+              variants={fadeInUpVariants}
+            >
               {error}
-            </div>
+            </motion.div>
           )}
 
-          <form onSubmit={handleLogin} className="grid gap-4 md:grid-cols-2">
-            <div className="flex flex-col gap-2">
+          <motion.form 
+            onSubmit={handleLogin} 
+            className="grid gap-4 md:grid-cols-2"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div className="flex flex-col gap-2" variants={fadeInUpVariants}>
               <label className="text-sm font-medium text-gray-700">
                 {identifierLabel}
               </label>
@@ -122,8 +157,8 @@ export default function Login() {
                 className="border border-gray-300 rounded-lg px-4 py-2"
                 required
               />
-            </div>
-            <div className="flex flex-col gap-2">
+            </motion.div>
+            <motion.div className="flex flex-col gap-2" variants={fadeInUpVariants}>
               <label className="text-sm font-medium text-gray-700">
                 Password
               </label>
@@ -135,15 +170,21 @@ export default function Login() {
                 className="border border-gray-300 rounded-lg px-4 py-2"
                 required
               />
-            </div>
-            <div className="md:col-span-2 flex items-center justify-between">
-              <button
+            </motion.div>
+            <motion.div 
+              className="md:col-span-2 flex items-center justify-between"
+              variants={fadeInUpVariants}
+            >
+              <motion.button
                 type="submit"
                 disabled={loading}
                 className="px-6 py-2 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 disabled:opacity-60"
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
               >
                 {loading ? "Signing in..." : "Sign In"}
-              </button>
+              </motion.button>
               {(role === "admin" || role === "staff") && (
                 <Link
                   to={`/reset-password?role=${role}`}
@@ -152,10 +193,10 @@ export default function Login() {
                   Forgot password?
                 </Link>
               )}
-            </div>
-          </form>
-        </section>
-      </div>
-    </main>
+            </motion.div>
+          </motion.form>
+        </motion.section>
+      </motion.div>
+    </motion.main>
   );
 }

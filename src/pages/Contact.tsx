@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { fadeInUpVariants, containerVariants, cardVariants, buttonVariants } from "../utils/animations";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -52,62 +54,102 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-12 px-6 md:px-16">
+    <motion.div 
+      className="bg-gray-50 min-h-screen py-12 px-6 md:px-16"
+      variants={fadeInUpVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto mb-14">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
+      <motion.div 
+        className="text-center max-w-3xl mx-auto mb-14"
+        variants={fadeInUpVariants}
+      >
+        <motion.h1 className="text-4xl md:text-5xl font-extrabold mb-4" variants={fadeInUpVariants}>
           Contact Us
-        </h1>
-        <p className="text-gray-600 text-lg">
+        </motion.h1>
+        <motion.p className="text-gray-600 text-lg" variants={fadeInUpVariants}>
           Have questions about courses or admissions? Reach out to us. We are
           happy to help you.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
       {/* Contact Info Cards */}
-      <div className="grid md:grid-cols-3 gap-8 mb-16">
-        <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
+      <motion.div 
+        className="grid md:grid-cols-3 gap-8 mb-16"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div 
+          className="bg-white shadow-lg rounded-2xl p-8 text-center"
+          variants={cardVariants}
+          whileHover="hover"
+        >
           <h3 className="text-xl font-bold text-blue-600 mb-2">Address</h3>
           <p className="text-gray-600">
             Yogeshwara Institute<br />
             Gandhinagar, Sircilla,<br />
             Telangana, India
           </p>
-        </div>
+        </motion.div>
 
-        <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
+        <motion.div 
+          className="bg-white shadow-lg rounded-2xl p-8 text-center"
+          variants={cardVariants}
+          whileHover="hover"
+        >
           <h3 className="text-xl font-bold text-blue-600 mb-2">Phone</h3>
           <p className="text-gray-600">+91 95333 08928</p>
-        </div>
+        </motion.div>
 
-        <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
+        <motion.div 
+          className="bg-white shadow-lg rounded-2xl p-8 text-center"
+          variants={cardVariants}
+          whileHover="hover"
+        >
           <h3 className="text-xl font-bold text-blue-600 mb-2">Email</h3>
           <p className="text-gray-600">yogeshwara475@gmail.com</p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Contact Form */}
-      <div className="bg-white shadow-2xl rounded-3xl p-8 md:p-12 max-w-4xl mx-auto mb-16">
-        <h2 className="text-3xl font-bold text-center mb-8">
+      <motion.div 
+        className="bg-white shadow-2xl rounded-3xl p-8 md:p-12 max-w-4xl mx-auto mb-16"
+        variants={fadeInUpVariants}
+      >
+        <motion.h2 className="text-3xl font-bold text-center mb-8" variants={fadeInUpVariants}>
           Send Us a Message
-        </h2>
+        </motion.h2>
 
         {success && (
-          <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg border border-green-300">
+          <motion.div 
+            className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg border border-green-300"
+            variants={fadeInUpVariants}
+          >
             ✓ Your message has been sent successfully! We'll respond within 24
             hours.
-          </div>
+          </motion.div>
         )}
 
         {error && (
-          <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg border border-red-300">
+          <motion.div 
+            className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg border border-red-300"
+            variants={fadeInUpVariants}
+          >
             {error}
-          </div>
+          </motion.div>
         )}
 
-        <form onSubmit={handleSubmit} className="grid gap-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <input
+        <motion.form 
+          onSubmit={handleSubmit} 
+          className="grid gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div className="grid md:grid-cols-2 gap-6" variants={containerVariants}>
+            <motion.input
               type="text"
               name="name"
               placeholder="Your Name"
@@ -115,8 +157,9 @@ export default function Contact() {
               onChange={handleChange}
               required
               className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              variants={fadeInUpVariants}
             />
-            <input
+            <motion.input
               type="email"
               name="email"
               placeholder="Your Email"
@@ -124,10 +167,11 @@ export default function Contact() {
               onChange={handleChange}
               required
               className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              variants={fadeInUpVariants}
             />
-          </div>
+          </motion.div>
 
-          <input
+          <motion.input
             type="text"
             name="subject"
             placeholder="Subject"
@@ -135,9 +179,10 @@ export default function Contact() {
             onChange={handleChange}
             required
             className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            variants={fadeInUpVariants}
           />
 
-          <textarea
+          <motion.textarea
             name="message"
             rows={5}
             placeholder="Your Message"
@@ -145,22 +190,32 @@ export default function Contact() {
             onChange={handleChange}
             required
             className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
-          ></textarea>
+            variants={fadeInUpVariants}
+          ></motion.textarea>
 
-          <button
+          <motion.button
             type="submit"
             disabled={loading}
             className="bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
           >
             {loading ? "Sending..." : "Send Message"}
-          </button>
-        </form>
-      </div>
+          </motion.button>
+        </motion.form>
+      </motion.div>
 
       {/* Map Section */}
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-6">Find Us Here</h2>
-        <div className="w-full h-80 rounded-2xl overflow-hidden shadow-lg">
+      <motion.div 
+        className="max-w-5xl mx-auto"
+        variants={fadeInUpVariants}
+      >
+        <motion.h2 className="text-3xl font-bold text-center mb-6" variants={fadeInUpVariants}>Find Us Here</motion.h2>
+        <motion.div 
+          className="w-full h-80 rounded-2xl overflow-hidden shadow-lg"
+          variants={fadeInUpVariants}
+        >
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1362.7952974109533!2d78.80648314934673!3d18.386734883101834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bccfd003a87ce8f%3A0x327138323221f470!2sYogeshwar%20Institute!5e0!3m2!1sen!2sin!4v1769918566888!5m2!1sen!2sin"
             width="100%"
@@ -171,8 +226,8 @@ export default function Contact() {
             referrerPolicy="no-referrer-when-downgrade"
             title="YIMS Location"
           ></iframe>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }

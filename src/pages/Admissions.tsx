@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { fadeInUpVariants, containerVariants, cardVariants, buttonVariants } from "../utils/animations";
 
 type Course = {
   title: string;
@@ -32,98 +34,144 @@ export default function Admissions() {
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen py-12 px-6 md:px-16">
+    <motion.div 
+      className="bg-gray-50 min-h-screen py-12 px-6 md:px-16"
+      variants={fadeInUpVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto mb-14">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
+      <motion.div 
+        className="text-center max-w-3xl mx-auto mb-14"
+        variants={fadeInUpVariants}
+      >
+        <motion.h1 className="text-4xl md:text-5xl font-extrabold mb-4" variants={fadeInUpVariants}>
           Admissions Open
-        </h1>
-        <p className="text-gray-600 text-lg">
+        </motion.h1>
+        <motion.p className="text-gray-600 text-lg" variants={fadeInUpVariants}>
           Join our coaching programs for SSC, Polytechnic Entrance, and
           Government Exams. Transform your future with YIMS today!
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
       {/* Courses Eligible */}
-      <div className="grid md:grid-cols-3 gap-8 mb-16">
+      <motion.div 
+        className="grid md:grid-cols-3 gap-8 mb-16"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {courses.map((course, i) => (
-          <div
+          <motion.div
             key={i}
             className="bg-white shadow-lg rounded-2xl p-8 hover:shadow-2xl transition"
+            variants={cardVariants}
+            whileHover="hover"
           >
-            <h2 className="text-2xl font-bold text-blue-600 mb-3">
+            <motion.h2 className="text-2xl font-bold text-blue-600 mb-3" variants={fadeInUpVariants}>
               {course.title}
-            </h2>
-            <p className="text-gray-600 mb-4">
+            </motion.h2>
+            <motion.p className="text-gray-600 mb-4" variants={fadeInUpVariants}>
               <span className="font-semibold">Eligibility:</span>{" "}
               {course.eligibility}
-            </p>
-            <p className="text-gray-700 text-sm">{course.description}</p>
-          </div>
+            </motion.p>
+            <motion.p className="text-gray-700 text-sm" variants={fadeInUpVariants}>{course.description}</motion.p>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Admission Process */}
-      <div className="bg-white shadow-xl rounded-2xl p-10 mb-16">
-        <h2 className="text-3xl font-bold text-center mb-10">
+      <motion.div 
+        className="bg-white shadow-xl rounded-2xl p-10 mb-16"
+        variants={fadeInUpVariants}
+      >
+        <motion.h2 className="text-3xl font-bold text-center mb-10" variants={fadeInUpVariants}>
           Admission Process
-        </h2>
+        </motion.h2>
 
-        <div className="grid md:grid-cols-4 gap-8 text-center">
+        <motion.div 
+          className="grid md:grid-cols-4 gap-8 text-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {[
             "Visit our institute or contact us online",
             "Choose your preferred course",
             "Fill out the admission form",
             "Complete fee payment and confirm your seat",
           ].map((step: string, i: number) => (
-            <div key={i} className="p-6">
-              <div className="text-3xl font-bold text-blue-600 mb-3">
+            <motion.div key={i} className="p-6" variants={cardVariants}>
+              <motion.div className="text-3xl font-bold text-blue-600 mb-3" variants={fadeInUpVariants}>
                 Step {i + 1}
-              </div>
-              <p className="text-gray-600">{step}</p>
-            </div>
+              </motion.div>
+              <motion.p className="text-gray-600" variants={fadeInUpVariants}>{step}</motion.p>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Documents */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-8">
+      <motion.div className="mb-16" variants={fadeInUpVariants}>
+        <motion.h2 className="text-3xl font-bold text-center mb-8" variants={fadeInUpVariants}>
           Documents Required
-        </h2>
+        </motion.h2>
 
-        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-2xl p-8">
-          <ul className="list-disc list-inside space-y-3 text-gray-700 text-lg">
-            <li>Recent passport size photographs</li>
-            <li>Aadhar Card / ID Proof</li>
-            <li>Previous class marks memo</li>
-            <li>Transfer Certificate (if applicable)</li>
-          </ul>
-        </div>
-      </div>
+        <motion.div 
+          className="max-w-3xl mx-auto bg-white shadow-lg rounded-2xl p-8"
+          variants={fadeInUpVariants}
+        >
+          <motion.ul 
+            className="list-disc list-inside space-y-3 text-gray-700 text-lg"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {["Recent passport size photographs", "Aadhar Card / ID Proof", "Previous class marks memo", "Transfer Certificate (if applicable)"].map((item, i) => (
+              <motion.li key={i} variants={fadeInUpVariants}>{item}</motion.li>
+            ))}
+          </motion.ul>
+        </motion.div>
+      </motion.div>
 
       {/* CTA */}
-      <div className="text-center py-12 bg-gradient-to-r from-blue-900 to-blue-700 rounded-2xl text-white">
-        <h3 className="text-3xl font-bold mb-4">Ready to Join?</h3>
-        <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+      <motion.div 
+        className="text-center py-12 bg-gradient-to-r from-blue-900 to-blue-700 rounded-2xl text-white"
+        variants={fadeInUpVariants}
+      >
+        <motion.h3 className="text-3xl font-bold mb-4" variants={fadeInUpVariants}>Ready to Join?</motion.h3>
+        <motion.p className="text-blue-100 mb-8 max-w-2xl mx-auto" variants={fadeInUpVariants}>
           Complete your application now and start your journey to success. Our admissions team is ready to help you every step of the way.
-        </p>
+        </motion.p>
         <Link to="/apply-admission">
-          <button className="bg-white text-blue-900 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition shadow-lg">
+          <motion.button 
+            className="bg-white text-blue-900 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition shadow-lg"
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
+          >
             Apply Now
-          </button>
+          </motion.button>
         </Link>
-      </div>
+      </motion.div>
 
       {/* Contact CTA */}
-      <div className="text-center mt-12">
-        <p className="text-gray-700 mb-4">Have questions? Reach out to us!</p>
+      <motion.div 
+        className="text-center mt-12"
+        variants={fadeInUpVariants}
+      >
+        <motion.p className="text-gray-700 mb-4" variants={fadeInUpVariants}>Have questions? Reach out to us!</motion.p>
         <Link to="/contact">
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+          <motion.button 
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
+          >
             Contact Us
-          </button>
+          </motion.button>
         </Link>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
