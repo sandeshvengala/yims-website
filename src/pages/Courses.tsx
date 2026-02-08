@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { containerVariants, itemVariants, cardVariants, fadeInUpVariants } from "../utils/animations";
 
 export default function Courses() {
   const courses = [

@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.4",
     "express": "^4.21.2",
+    "framer-motion": "^12.33.0",
     "mongoose": "^9.1.6",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.15",
