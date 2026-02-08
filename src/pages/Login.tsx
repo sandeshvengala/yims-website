@@ -32,25 +32,36 @@ export default function Login() {
     setLoading(true);
 
     try {
+      console.log("Attempting login with:", { role, identifier, password });
+      
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role, identifier, password }),
       });
 
+      console.log("Response status:", response.status);
+
       if (!response.ok) {
         const payload = await response.json().catch(() => ({}));
+        console.error("Login error:", payload);
         throw new Error(payload.message || "Login failed");
       }
 
       const user = await response.json();
-      localStorage.setItem("yimsUser", JSON.stringify(user));
+      console.log("Login successful:", user);
+      
+      const userData = { ...user, role, identifier };
+      localStorage.setItem("yimsUser", JSON.stringify(userData));
+      console.log("User stored in localStorage");
 
       if (role === "admin") navigate("/admin");
-      if (role === "staff") navigate("/staff");
-      if (role === "student") navigate("/student");
+      else if (role === "staff") navigate("/staff");
+      else if (role === "student") navigate("/student");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Login failed");
+      const errorMsg = err instanceof Error ? err.message : "Login failed";
+      console.error("Login error:", errorMsg);
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
