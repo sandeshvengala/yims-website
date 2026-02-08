@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-export const pageVariants = {
+export const pageVariants: Variants = {
   initial: { opacity: 0, y: 20 },
   animate: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
   },
   exit: { 
     opacity: 0, 
@@ -14,7 +14,7 @@ export const pageVariants = {
   },
 };
 
-export const containerVariants = {
+export const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -25,7 +25,7 @@ export const containerVariants = {
   },
 };
 
-export const itemVariants = {
+export const itemVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
@@ -34,13 +34,13 @@ export const itemVariants = {
   },
 };
 
-export const cardVariants = {
+export const cardVariants: Variants = {
   initial: { opacity: 0, y: 20, scale: 0.95 },
   animate: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
   },
   hover: {
     y: -10,
@@ -49,7 +49,7 @@ export const cardVariants = {
   },
 };
 
-export const buttonVariants = {
+export const buttonVariants: Variants = {
   initial: { scale: 1 },
   hover: {
     scale: 1.05,
@@ -58,38 +58,38 @@ export const buttonVariants = {
   tap: { scale: 0.95 },
 };
 
-export const slideInVariants = {
+export const slideInVariants: Variants = {
   initial: { opacity: 0, x: -50 },
   animate: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
   },
 };
 
-export const slideInRightVariants = {
+export const slideInRightVariants: Variants = {
   initial: { opacity: 0, x: 50 },
   animate: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
   },
 };
 
-export const fadeInUpVariants = {
+export const fadeInUpVariants: Variants = {
   initial: { opacity: 0, y: 30 },
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
   },
 };
 
-export const scaleInVariants = {
+export const scaleInVariants: Variants = {
   initial: { opacity: 0, scale: 0.8 },
   animate: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
   },
 };
