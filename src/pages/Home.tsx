@@ -30,7 +30,7 @@ export default function Home() {
         ))}
       </motion.section>
 
-      {/* About Preview with Founder */}
+      {/* About Preview */}
       <motion.section 
         variants={fadeInUpVariants}
         initial="initial"
@@ -57,17 +57,14 @@ export default function Home() {
           </motion.p>
         </div>
 
-        {/* Founder Card - Redesigned */}
+        {/* Founder Card */}
         <motion.div 
           variants={cardVariants}
           whileHover="hover"
-          className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white shadow-2xl rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 overflow-hidden"
+          className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white shadow-2xl rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 overflow-hidden max-w-4xl mx-auto"
         >
-          
-          {/* Decorative Glow */}
           <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
 
-          {/* Founder Image */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -78,37 +75,44 @@ export default function Home() {
               src="/src/YIMS-LOGO.png"
               alt="Founder"
               className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-4 border-white shadow-lg"
-    />
-  </div>
+            />
+          </motion.div>
 
-  {/* Founder Content */}
-  <div className="text-center md:text-left">
-    <span className="bg-white text-blue-900 text-sm font-semibold px-4 py-1 rounded-full inline-block mb-4">
-      Founder & Director
-    </span>
-
-    <h3 className="text-3xl font-bold mb-3">Mr.Guduri Nishanth Kumar</h3>
-
-    <p className="text-blue-100 leading-relaxed text-lg italic">
-      “Our mission is to guide students with the right knowledge, discipline,
-      and mentorship to achieve academic excellence and career success.
-      At YIMS, every student is treated with personal care and given the
-      support they need to reach their full potential.”
-    </p>
-  </div>
-</div>
-</section>
-
+          <motion.div variants={fadeInUpVariants} className="text-center md:text-left">
+            <span className="bg-white text-blue-900 text-sm font-semibold px-4 py-1 rounded-full inline-block mb-4">
+              Founder & Director
+            </span>
+            <h3 className="text-3xl font-bold mb-3">Mr.Guduri Nishanth Kumar</h3>
+            <p className="text-blue-100 leading-relaxed text-lg italic">
+              "Our mission is to guide students with the right knowledge, discipline, and mentorship to achieve academic excellence and career success."
+            </p>
+          </motion.div>
+        </motion.div>
+      </motion.section>
 
       {/* Call to Action */}
-      <section className="py-16 text-center">
-        <h2 className="text-3xl font-bold mb-4">Start Your Journey Today</h2>
+      <motion.section 
+        variants={fadeInUpVariants}
+        initial="initial"
+        whileInView="animate"
+        className="py-16 text-center"
+      >
+        <motion.h2 
+          variants={itemVariants}
+          className="text-3xl font-bold mb-4"
+        >
+          Start Your Journey Today
+        </motion.h2>
         <Link to="/admissions">
-         <button className="bg-blue-900 text-white px-8 py-3 rounded-lg">
-          Apply Now
-        </button>
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-blue-900 text-white px-8 py-3 rounded-lg hover:bg-blue-800 transition-all"
+          >
+            Apply Now
+          </motion.button>
         </Link>
-      </section>
-    </div>
+      </motion.section>
+    </motion.div>
   );
 }
