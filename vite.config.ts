@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true,
-    allowedHosts: ['walt-nuke-myspace-remedy.trycloudflare.com'],
+    allowedHosts: 'all',
     proxy: {
       "/api": {
         target: "http://localhost:4000",
